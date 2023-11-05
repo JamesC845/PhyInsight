@@ -1,0 +1,68 @@
+########## https://pkgdown.r-lib.org/reference/deploy_site_github.html
+
+# Install released version from CRAN
+library(pkgdown)
+
+# Run once to configure your package to use pkgdown
+usethis::use_pkgdown()
+
+?pkgdown::build_site()
+
+
+
+################################################################################
+
+
+
+
+#
+pkgdown::clean_site()
+
+#
+pkgdown::build_site()
+
+
+# preview homepage
+pkgdown::build_home()
+
+
+
+
+
+
+
+########## https://pkgdown.r-lib.org/reference/deploy_site_github.html
+
+
+#devtools::install_github("ropensci-archive/travis")
+library(travis)
+
+
+
+
+
+# will setup a GitHub action to automatically build and deploy your package website to GitHub pages.
+#     CREATES  'gh-pages' BRANCH
+?usethis::use_pkgdown_github_pages()
+
+
+
+# can be called locally to build and deploy your website to any desired branch.
+#     DOESNT WORK
+#     DOESNT WORK
+#?pkgdown::deploy_to_branch()
+
+
+
+
+# https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+#
+#
+#  "Open up the .gitignore file and delete the reference to docs (should be at the bottom)" - https://stackoverflow.com/questions/69507610/unable-to-push-package-website-pkgdown-from-r-to-github
+#
+# use git bash to push the new pkgdown files to the same github repostiory
+#
+# https://github.com/JamesC845/DivInsight/settings/pages and under 'Build and deployment' have the 'Source' as deploy from branch then have master branch selected and /docs selected  (docs folder is the pkgdown folder)
+#
+
+

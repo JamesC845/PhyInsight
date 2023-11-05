@@ -1,0 +1,177 @@
+################################################################################
+######################################## genSpecDF() ###########################
+################################################################################
+
+querySpecData <- function(taxonName){
+
+  ### call DNA info from database and collapse into a dataframe
+  specimen_dataframe <- bold::bold_seqspec(taxon = taxonName)
+  specimen_dataframe <- do.call(rbind, specimen_dataframe)
+  specimen_dataframe <- as.data.frame(specimen_dataframe)
+  specimen_dataframe <- t(specimen_dataframe)
+  specimen_dataframe <- as.data.frame(specimen_dataframe)
+
+  ### add row names
+  #row.names(specimen_dataframe) <- 1:length(specimen_dataframe[,1])
+
+  ### filter out empty sequences
+  specimen_dataframe <- specimen_dataframe[nchar(specimen_dataframe$nucleotides) > 0,]
+
+  ###
+  return(specimen_dataframe)
+
+
+}
+
+################################################################################
+######################################## genDNAbin() ###########################
+################################################################################
+
+genDNABin <- function(specimen_dataframe){
+
+  ### call DNA info from database and collapse into a dataframe
+#  bold::bold_seqspec(taxon = taxonName) -> specimen_dataframe
+#  do.call(rbind, specimen_dataframe) -> specimen_dataframe
+#  as.data.frame(specimen_dataframe) -> specimen_dataframe
+#  t(specimen_dataframe) -> specimen_dataframe
+#  as.data.frame(specimen_dataframe) -> specimen_dataframe
+
+
+  ### filter out empty sequences
+#  specimen_dataframe <- specimen_dataframe[nchar(specimen_dataframe$nucleotides) > 0,]
+
+
+  ### convert strings into seperate DNA bins and store into a list
+  bin_list <- list()
+
+  for(i in 1:length(specimen_dataframe$nucleotides)){
+    bin_list[[i]] <- ape::as.DNAbin(DNAString(specimen_dataframe$nucleotides[i]))
+  }
+
+
+
+  ### collapse the DNA bins
+  bin <- do.call(c, bin_list)
+
+
+  ###
+  return(bin)
+
+}
+
+
+################################################################################
+######################################## Write & Read FASTA ####################
+################################################################################
+
+genDNAStringSet <- function(DNABin, fileName = "new_DNAString_file"){
+
+  ##### FILE NAME TEST
+  FASTA_fileName <- fileName
+
+
+  ### create new filename with FASTA extension
+  FASTA_fileName.ext <- gsub(" ", "", paste(as.character(FASTA_fileName), ".fasta"))
+  FASTA_fileName.ext <- as.character(FASTA_fileName.ext)
+
+
+
+  ### write and read FASTA file
+  ape::write.FASTA(x = ape::del.gaps(DNABin),
+                   file = FASTA_fileName.ext
+  )
+
+  FASTA_strings <- Biostrings::readDNAStringSet(
+
+    #    filepath = FASTA_fileName.ext,
+    filepath = gsub(" ", "", paste(getwd(), "/", FASTA_fileName.ext)),
+
+    format = "fasta"
+  )
+
+
+  ###
+  return(FASTA_strings)
+
+
+}
+
+################################################################################
+######################################## Manipulation #1 #######################
+################################################################################
+
+ManipStringSet <- function(DNAStringSet){
+
+  #
+  ##
+  ###
+  ####
+
+
+  ### orient
+  FASTA_strings <- DECIPHER::OrientNucleotides(DNAStringSet)
+
+  ### align
+  FASTA_strings <- DECIPHER::AlignSeqs(FASTA_strings)
+
+
+  ####
+  ###
+  ##
+  #
+
+  return(FASTA_strings)
+
+}
+
+################################################################################
+######################################## Manipulation #2 #######################
+################################################################################
+
+manip_2 <- function(DNAStringSet){}
+
+################################################################################
+######################################## genPhytree ############################
+################################################################################
+
+genPhytree <- function(ManipStrings){
+
+###
+#njTree <- ape::nj(
+njTree <- ape::njs(
+  ape::dist.dna(
+    ape::as.DNAbin(ManipStrings)
+  )
+)
+
+###
+return(njTree)
+
+}
+
+
+
+################################################################################
+######################################## Unique Nucleotide Bases ###############
+################################################################################
+
+
+# use this function to check the nucleotides/sequences and make sure the data is okay
+UBases <- function(seq){
+
+  j <- strsplit(seq, "")
+  k <- data.frame(char = j)
+
+  return(unique(k[,1]))
+
+}
+
+
+################################################################################
+######################################## DNA Distance Matrix ###################
+################################################################################
+
+
+
+dist_matrix <- ape::dist.dna(ape::as.DNAbin(ManipStrings1), model = "JC")
+dist_matrix %>% as.matrix %>% View

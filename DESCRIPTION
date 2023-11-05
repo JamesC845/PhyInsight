@@ -1,0 +1,27 @@
+Package: PhyInsight
+Type: Package
+Title: DNA Sequence Phylogenetic Tree Creation and Analysis
+Version: 0.1.0
+Authors@R: 
+    person("James", "Churchward", role = c("aut", "cre", "cph"),
+           email = "jameschurchward1@outlook.com")
+Maintainer: James Churchward <jameschurchward1@outlook.com>
+Description: ... 
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+    bold,
+    Biostrings,
+    ape,
+    DECIPHER
+Depends: 
+    R (>= 2.10)
+Suggests:
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+RoxygenNote: 7.2.3
+VignetteBuilder: knitr
+URL: https://jamesc845.github.io/PhyInsight/

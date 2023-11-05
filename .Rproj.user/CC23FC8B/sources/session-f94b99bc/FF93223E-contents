@@ -1,0 +1,224 @@
+setwd("C:/Users/jimmy/OneDrive/R/PhyInsight_Workspace/FASTA_dump")
+load("C:/Users/jimmy/OneDrive/R/PhyInsight_Workspace/Seq_Manipulation_Functions.RData")
+
+
+library(bold)
+library(Biostrings)
+library(ape)
+
+
+
+################################################################################
+######################################## filter by DNA marker ##################
+################################################################################
+
+###
+unique(specdf$markercode)
+table(specdf$markercode)
+
+
+### automatically find the name most common marker
+markerCommon <-
+  subset(specdf, markercode ==
+           row.names(as.data.frame(sort(table(specdf$markercode), decreasing = T)[1]))
+)
+
+
+### split the specimen dataframe by DNA marker
+markerSplit <- split(specdf, specdf$markercode)
+
+
+### use either method to store common marker
+specdf <- markerCommon
+specdf <- markerSplit$`COI-5P`
+
+
+################################################################################
+######################################## genDNAbin() ###########################
+################################################################################
+
+bin1 <- genDNABin(specdf)
+
+################################################################################
+######################################## Write & Read FASTA ####################
+################################################################################
+
+
+DNAStringSet1 <-  genDNAStringSet(bin1, "daefsv")
+
+
+
+################################################################################
+######################################## Manipulation #1 #######################
+################################################################################
+
+
+ManipStrings1 <- ManipStringSet(DNAStringSet1)
+
+
+################################################################################
+######################################## Manipulation #2 #######################
+################################################################################
+manip_2 <- function(DNAStringSet){}
+################################################################################
+######################################## browse ################################
+################################################################################
+
+library(DECIPHER)
+#BrowseSeqs(ManipStrings1)
+
+
+#ManipStrings_problem <- ManipStrings1[59:67]   # strings dont match up with most of the other strings which causes problems
+#ManipStrings_noProblem <- ManipStrings1[-59:-67,]   # remove mismatched seqs
+
+
+################################################################################
+######################################## base plot #############################
+################################################################################
+
+
+
+
+###
+Phytree1 <- genPhytree(ManipStrings1)
+
+
+###
+Phytree1$tip.label <- paste(
+  c(specdf$species_name), "|",
+  c(specdf$country)
+)
+
+
+###     extend the tree branches
+Phytree1$edge.length <- Phytree1$edge.length + (mean(Phytree1$edge.length) * 0.1)
+#Phytree1$edge.length <- Phytree1$edge.length + quantile(n, probs = 0.1)
+
+
+### plot the phylo tree (maybe just go the PDF route for big trees)
+#plot(Phytree1, cex = 0.45,
+#     label.offset = 0.001
+#)
+
+
+
+################################################################################
+######################################## save base plot ########################
+################################################################################
+
+# png()
+
+#load("checkpoint.RData")
+
+
+
+
+##### seems the best way to create phylo tree PDF so far
+tree_file_name <- "phytreePDF12.pdf"
+
+pdf(tree_file_name, width = 12, height = 8)
+#par(mar=c(4, 4, 0.5, 0.5))    # original margins
+par(mar=c(0, 0, 0, 0)) # best margins so far
+plot(Phytree1, cex = 0.3, label.offset = 0.003)    # need a much bigger cex when saving PDF
+dev.off()
+
+
+### R command to open the file
+system(paste("open", shQuote(tree_file_name)))
+
+
+
+################################################################################
+######################################## gg plot ###############################
+################################################################################
+
+library(ggplot2)
+#devtools::install_github("GuangchuangYu/ggtree")
+library(ggtree)
+library(ape)
+
+tree_gg <- ggtree(Phytree1)
+
+p <- tree_gg +
+  geom_tiplab() +         # Add tip labels
+  geom_text(aes(label = branch, x = x + 0.02), size = 1) +  # Add branch labels
+  theme_tree()            # Apply a tree-like theme
+
+print(p)
+
+
+
+ggsave("my_plot.png", plot = p, width = 6, height = 4, dpi = 300)
+
+
+
+################################################################################
+######################################## ... #############################
+################################################################################
+
+
+
+
+
+###       FIGURE OUT LATER WHETHER TO USE nj() OR njs()
+###       FIGURE OUT LATER WHETHER TO USE nj() OR njs()
+###       FIGURE OUT LATER WHETHER TO USE nj() OR njs()
+## ape::nj()
+#Error in ape::nj(ape::dist.dna(ape::as.DNAbin(ManipStrings))) :
+#missing values are not allowed in the distance matrix
+#Consider using njs()
+
+
+
+
+
+
+###
+UBases("TATTGCCAAACCCTTTAT")
+UBases("AAAAAAABBBBBBBCCCCCCCDDDDDEEEEEEFFFFGGGGGHHHHHIIIIIIIIJJJKKKLLLMM")
+
+
+
+
+
+
+
+
+
+
+
+
+### search for duplicated indiviudals/nucleotides
+TRUE %in% duplicated(specdf$processid)
+TRUE %in% duplicated(specdf$sampleid)
+TRUE %in% duplicated(specdf$nucleotides)
+
+
+specdf_new <- specdf[duplicated(specdf$nucleotides),]
+
+
+View(specdf_new$nucleotides %>% as.data.frame)
+
+
+
+
+### different dist.dna() models
+ape::dist.dna(ape::as.DNAbin(ManipStrings1[50:54]), model = "JC")
+ape::dist.dna(ape::as.DNAbin(ManipStrings1[50:57]), model = "raw")
+ape::dist.dna(ape::as.DNAbin(ManipStrings1[50:57]), model = "JC69")
+ape::dist.dna(ape::as.DNAbin(ManipStrings1[50:57]), model = "K2P")
+
+
+
+
+
+
+################################################################################
+################################################################################
+################################################################################
+
+# MAY NEED TO ADD A LINE Of CODE THAT FILTERS OUT DNA FROM DIFF TYPES OF DNA
+# MAY NEED TO ADD A LINE Of CODE THAT FILTERS OUT DNA FROM DIFF TYPES OF DNA
+# MAY NEED TO ADD A LINE Of CODE THAT FILTERS OUT DNA FROM DIFF TYPES OF DNA
+# MAY NEED TO ADD A LINE Of CODE THAT FILTERS OUT DNA FROM DIFF TYPES OF DNA
+# MAY NEED TO ADD A LINE Of CODE THAT FILTERS OUT DNA FROM DIFF TYPES OF DNA

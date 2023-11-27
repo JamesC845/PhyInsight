@@ -2,11 +2,9 @@
 #'
 #' Orient and align DNA sequences in a DNA string set object.
 #'
-#' @import DECIPHER
-#'
 #' @param DNAStringSet A DNA string set object.
 #'
-#' @return A DNA string set (ready for analysis)
+#' @return A DNA string set (that is ready for analysis)
 #' @export
 #'
 #' @examples # generate and manipulate a DNA string set object using the taxon 'Antheraea polyphemus'

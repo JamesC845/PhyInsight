@@ -7,7 +7,7 @@
 genDNABin(specimen_dataframe)
 }
 \arguments{
-\item{specimen_dataframe}{A dataframe with speciment data created using querySpecData()}
+\item{specimen_dataframe}{A dataframe with specimen data created using querySpecData()}
 }
 \value{
 A DNA bin object.

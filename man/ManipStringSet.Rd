@@ -10,7 +10,7 @@ ManipStringSet(DNAStringSet)
 \item{DNAStringSet}{A DNA string set object.}
 }
 \value{
-A DNA string set (ready for analysis)
+A DNA string set (that is ready for analysis)
 }
 \description{
 Orient and align DNA sequences in a DNA string set object.

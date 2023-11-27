@@ -5,7 +5,7 @@
 #' @import ape
 #' @import Biostrings
 #'
-#' @param specimen_dataframe A dataframe with speciment data created using querySpecData()
+#' @param specimen_dataframe A dataframe with specimen data created using querySpecData()
 #'
 #' @return A DNA bin object.
 #' @export

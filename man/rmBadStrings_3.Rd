@@ -7,7 +7,7 @@
 rmBadStrings_3(
   DNAStringSet,
   specimen_dataframe,
-  rmOutliers = T,
+  rmOutliers = F,
   max_Z_score = 3
 )
 }

@@ -1,8 +1,8 @@
 ---
-title: "Phylogenetic Tree of the Ursidae Family"
+title: "Quick Tree Building"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Ursidae_PhyloTree}
+  %\VignetteIndexEntry{PhyloTree_vignette_1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,7 +30,7 @@ The `PhyInsight` package is used to efficiently conduct DNA sequence analyses. I
 
 &nbsp;
 
-Any taxon can be used provided the DNA strings are in the correct format. The Ursidae family will be used as an example.
+Any taxon can be used provided the DNA strings are in the correct format. The Ursidae family will be used as an example of how one can use `PhyInsight` to manipulate DNA strings and build a phylogenetic tree in just four functions once the specimen dataframe is ready. 
 
 &nbsp;
 
@@ -45,7 +45,7 @@ Any taxon can be used provided the DNA strings are in the correct format. The Ur
 specdata <- querySpecData("Ursidae")
 
 # check the number of DNA marker codes
-table(specdata$markercode)
+sort(table(specdata$markercode))
 
 ```
 

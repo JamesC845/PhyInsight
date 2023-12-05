@@ -35,7 +35,7 @@
 #'specimen_dataframe_NEW <- StringsAndSpecdataframe[[2]]
 #'
 #'tail(specimen_dataframe_NEW$processid)
-rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max_Z_score = 3){
+rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max_Z_score = 3){
 
   ### function to generate symbol grid
   genSymbolGrid <- function(DNAStringSet){
@@ -154,6 +154,8 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
 
   ### need to order DNAStringSet_rmMismatch when finished while looping
   DNAStringSet_rmMismatch <- DNAStringSet_rmMismatch[order(as.numeric(names(DNAStringSet_rmMismatch)))]
+  DNAStringSet <- DNAStringSet_rmMismatch # new addition 2-12-23
+
 
 
   ### create new specimen dataframe with the problem sequences removed
@@ -181,7 +183,10 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
   ###
   if(is.character(NaNlocs) == T) {
 
+    #DNAStringSet_rmMismatch <- DNAStringSet_rmMismatch[-as.numeric(NaNlocs)]
+    #DNAStringSet <- DNAStringSet_rmMismatch
     DNAStringSet <- DNAStringSet_rmMismatch[-as.numeric(NaNlocs)]
+    #DNAStringSet <- DNAStringSet[-as.numeric(NaNlocs)]
     specimen_dataframe_new <- specimen_dataframe_new[-as.numeric(NaNlocs), ]
 
   }
@@ -251,6 +256,7 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
       #      DF_NEW <- DF_NEW[row.names(DF_NEW) %in% names(DNAStringSet), ]
       #      specimen_dataframe_new <- DF_NEW
 
+
       print(paste("Outlier strings detected and removed: ", outLocs))
 
 
@@ -266,7 +272,6 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
       outLocs <- outLocs[outLocs > 3]
       outLocs <- names(outLocs)
       outLocs
-
     }
   }
 
@@ -274,7 +279,7 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
   ##############################################################################
 
   ###
-#  return(list(DNAStringSet_rmMismatch, specimen_dataframe_new))  # original
-return(list(DNAStringSet, specimen_dataframe_new))
+  #  return(list(DNAStringSet_rmMismatch, specimen_dataframe_new))  # original
+  return(list(DNAStringSet, specimen_dataframe_new))
 
 }

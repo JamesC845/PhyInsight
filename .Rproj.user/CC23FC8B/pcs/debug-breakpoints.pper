@@ -1,5 +1,36 @@
 {
     "debugBreakpointsState": {
-        "breakpoints": []
+        "breakpoints": [
+            {
+                "id": 0,
+                "path": "C:/Users/jimmy/OneDrive/R/[CMU] Desk Study/Write-up/Showcase_Script(Colombia).R",
+                "line_number": 76,
+                "function_steps": "",
+                "function_name": "toplevel",
+                "state": 1,
+                "editor_state": 1,
+                "editor_line_number": 76,
+                "is_pending_debug_completion": false,
+                "needs_updated_steps": false,
+                "type": 1,
+                "is_package_breakpoint": false,
+                "package_name": ""
+            },
+            {
+                "id": 1,
+                "path": "C:/Users/jimmy/OneDrive/R/[CMU] Desk Study/Write-up/Package_Functions/clusterise_sites_large_df() + coordinate_recentre().R",
+                "line_number": 111,
+                "function_steps": "",
+                "function_name": "clusterise_sites_large_df",
+                "state": 2,
+                "editor_state": 2,
+                "editor_line_number": 111,
+                "is_pending_debug_completion": false,
+                "needs_updated_steps": true,
+                "type": 0,
+                "is_package_breakpoint": false,
+                "package_name": ""
+            }
+        ]
     }
 }

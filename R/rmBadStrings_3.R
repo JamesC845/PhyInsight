@@ -35,7 +35,7 @@
 #'specimen_dataframe_NEW <- StringsAndSpecdataframe[[2]]
 #'
 #'tail(specimen_dataframe_NEW$processid)
-rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max_Z_score = 3){
+rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max_Z_score = 3){
 
   ### function to generate symbol grid
   genSymbolGrid <- function(DNAStringSet){
@@ -173,6 +173,7 @@ rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
   ###
   if(is.character(NaNlocs) == T) {
 
+    #DNAStringSet <- DNAStringSet_rmMismatch[-as.numeric(NaNlocs)]
     DNAStringSet <- DNAStringSet[-as.numeric(NaNlocs)]
     specimen_dataframe_new <- specimen_dataframe_new[-as.numeric(NaNlocs), ]
 
@@ -238,10 +239,10 @@ rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
       DNAStringSet <- DNAStringSet[-as.numeric(outLocs), ]
       specimen_dataframe_new <- specimen_dataframe_new[-as.numeric(outLocs), ]
 
-#   following lines removed 26-11-2023
-#      DF_NEW <- specimen_dataframe_new
-#      DF_NEW <- DF_NEW[row.names(DF_NEW) %in% names(DNAStringSet), ]
-#      specimen_dataframe_new <- DF_NEW
+      #   following lines removed 26-11-2023
+      #      DF_NEW <- specimen_dataframe_new
+      #      DF_NEW <- DF_NEW[row.names(DF_NEW) %in% names(DNAStringSet), ]
+      #      specimen_dataframe_new <- DF_NEW
 
 
       print(paste("Outlier strings detected and removed: ", outLocs))
@@ -259,7 +260,6 @@ rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
       outLocs <- outLocs[outLocs > 3]
       outLocs <- names(outLocs)
       outLocs
-
     }
   }
 
@@ -267,6 +267,7 @@ rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = T, max
   ##############################################################################
 
   ###
+  #  return(list(DNAStringSet_rmMismatch, specimen_dataframe_new))  # original
   return(list(DNAStringSet, specimen_dataframe_new))
 
 }

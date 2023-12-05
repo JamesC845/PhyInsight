@@ -24,7 +24,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Ursidae_PhyloTree.html">Phylogenetic Tree of the Ursidae Family</a>
+    <a class="dropdown-item" href="../articles/PhyloTree_vignette_1.html">Quick Tree Building</a>
+    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up with rmBadStrings()</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -51,7 +52,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rmBadStrings_2</span><span class="op">(</span></span>
 <span>  <span class="va">DNAStringSet</span>,</span>
 <span>  <span class="va">specimen_dataframe</span>,</span>
-<span>  rmOutliers <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  rmOutliers <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  max_Z_score <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -147,7 +148,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Refining the alignment:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.09 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">StringsAndSpecdataframe</span> <span class="op">&lt;-</span> <span class="fu">rmMismatchStrings_2</span><span class="op">(</span></span></span>

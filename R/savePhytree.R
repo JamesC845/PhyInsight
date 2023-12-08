@@ -41,7 +41,8 @@ savePhytree <- function(phyloTree, specimen_dataframe, tree_file_name = "Phyloge
 
   ###
   grDevices::pdf(tree_file_name, width = 12, height = 8)
-  graphics::par(mar=c(0, 0, 0, 0))
+  #  graphics::par(mar=c(0, 0, 0, 0))
+  withr::with_par(mar=c(0, 0, 0, 0))
   plot(
     phyloTree,
     cex = label_size,

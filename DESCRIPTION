@@ -15,7 +15,8 @@ Imports:
     Biostrings,
     ape,
     DECIPHER,
-    stats
+    stats,
+    withr
 Depends: 
     R (>= 2.10)
 Suggests:

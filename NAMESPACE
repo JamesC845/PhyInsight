@@ -2,4 +2,5 @@ exportPattern("^[[:alpha:]]+")
     importFrom("grDevices", "dev.off", "pdf")
     importFrom("graphics", "par")
     importFrom("stats", "sd")
-
+    importFrom("stats", "sd")
+    importFrom("withr", "with_par")

@@ -6,8 +6,7 @@ Authors@R:
     person("James", "Churchward", role = c("aut", "cre", "cph"),
            email = "jameschurchward1@outlook.com")
 Maintainer: James Churchward <jameschurchward1@outlook.com>
-Description: ... 
-    Use four spaces when indenting paragraphs within the Description.
+Description: Provide phylogenetic insights through automatic DNA string manipulation and tree creation. Currently, the package functions only query data from the BOLD System database (http://v4.boldsystems.org/index.php/api_home).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -15,7 +14,8 @@ Imports:
     bold,
     Biostrings,
     ape,
-    DECIPHER
+    DECIPHER,
+    stats
 Depends: 
     R (>= 2.10)
 Suggests:

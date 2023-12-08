@@ -194,7 +194,7 @@ rmBadStrings_3 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
 
   ### function to calculate Z scores
   calculate_Zscore <- function(x){
-    z <- (x - mean(x)) / sd(x)
+    z <- (x - mean(x)) / stats::sd(x)
 
     z <- abs(z)
 

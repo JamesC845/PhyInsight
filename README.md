@@ -6,7 +6,9 @@
 # PhyInsight: Providing Efficient Phylogenetic Insights
 
 Welcome to PhyInsight, a tool for showing phylogenetic insights through
-automatic DNA string manipulation.
+automatic DNA string manipulation. Currently, the functions are only
+suitable for querying, manipulating, and analysing data from the Bold
+System database. However, more features will be added in the future.
 
  
 
@@ -39,10 +41,13 @@ remotes::install_github("JamesC845/PhyInsight")
 
 ## Upcoming Updates
 
-- functions for automatic phylogenetic tree inference
+- functions for automatic phylogenetic tree inference will be added
 
 - functions will be added and/or existing functions will be updated so
   that PhyInsight will be compatible with more databases
+
+- functions will be added for the automatic querying, writing & reading
+  of FASTA files
 
  
 

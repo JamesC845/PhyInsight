@@ -6,7 +6,8 @@
 #' @param specimen_dataframe A specimen dataframe.
 #' @param tree_file_name An optional character string to name the PDF file.
 #' @param open_PDF A logical value to state whether to open the PDF file.
-#' @param label_offset A numerical value to state the label offset distance.
+#' @param label_offset A numerical value to set the label offset distance.
+#' @param label_size A numerical value to set the label size
 #'
 #' @return A PDF file.
 #' @export
@@ -39,8 +40,8 @@ savePhytree <- function(phyloTree, specimen_dataframe, tree_file_name = "Phyloge
 
 
   ###
-  pdf(tree_file_name, width = 12, height = 8)
-  par(mar=c(0, 0, 0, 0))
+  grDevices::pdf(tree_file_name, width = 12, height = 8)
+  graphics::par(mar=c(0, 0, 0, 0))
   plot(
     phyloTree,
     cex = label_size,
@@ -50,7 +51,7 @@ savePhytree <- function(phyloTree, specimen_dataframe, tree_file_name = "Phyloge
 
 
   ###
-  dev.off()
+  grDevices::dev.off()
 
 
   ### R command to open the file

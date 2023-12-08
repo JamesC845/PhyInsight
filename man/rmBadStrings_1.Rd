@@ -37,7 +37,7 @@ DNAStringset_Leo <- genDNAStringSet(DNABin_Leo)
 
 DNAStringSet_Leo_manipulated <- ManipStringSet(DNAStringset_Leo)
 
-StringsAndSpecdataframe <- rmMismatchStrings_1(
+StringsAndSpecdataframe <- PhyInsight::rmBadStrings_1(
 
  DNAStringSet = DNAStringSet_Leo_manipulated,
  specimen_dataframe = specdata

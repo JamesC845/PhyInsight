@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' specdata <- PhyInsight::querySpecData("Panthera leo")
+#'specdata <- PhyInsight::querySpecData("Panthera leo")
 #'
 #'specdata <- subset(specdata, markercode == "COI-5P")
 #'
@@ -21,7 +21,7 @@
 #'
 #'DNAStringSet_Leo_manipulated <- ManipStringSet(DNAStringset_Leo)
 #'
-#'StringsAndSpecdataframe <- rmMismatchStrings_1(
+#'StringsAndSpecdataframe <- PhyInsight::rmBadStrings_1(
 #'
 #'  DNAStringSet = DNAStringSet_Leo_manipulated,
 #'  specimen_dataframe = specdata
@@ -206,7 +206,7 @@ rmBadStrings_1 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
 
   ### function to calculate Z scores
   calculate_Zscore <- function(x){
-    z <- (x - mean(x)) / sd(x)
+    z <- (x - mean(x)) / stats::sd(x)
 
     z <- abs(z)
 

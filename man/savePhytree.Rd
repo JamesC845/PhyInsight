@@ -22,7 +22,9 @@ savePhytree(
 
 \item{open_PDF}{A logical value to state whether to open the PDF file.}
 
-\item{label_offset}{A numerical value to state the label offset distance.}
+\item{label_offset}{A numerical value to set the label offset distance.}
+
+\item{label_size}{A numerical value to set the label size}
 }
 \value{
 A PDF file.

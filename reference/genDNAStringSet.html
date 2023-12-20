@@ -25,7 +25,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/PhyloTree_vignette_1.html">Quick Tree Building</a>
-    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up with rmBadStrings()</a>
+    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -49,17 +49,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">genDNAStringSet</span><span class="op">(</span><span class="va">DNABin</span>, fileName <span class="op">=</span> <span class="st">"new_DNAString_file"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">genDNAStringSet</span><span class="op">(</span><span class="va">DNABin</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>DNABin</dt>
-<dd><p>A DNA bin oibject</p></dd>
-
-
-<dt>fileName</dt>
-<dd><p>An optional file name that will be saved to the directory</p></dd>
+<dd><p>A DNA bin object.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -72,7 +68,6 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># generate a DNA string set object using the taxon 'Antheraea polyphemus'</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">specdf_Anth</span> <span class="op">&lt;-</span> <span class="fu"><a href="querySpecData.html">querySpecData</a></span><span class="op">(</span><span class="st">"Antheraea polyphemus"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">DNABin_Anth</span> <span class="op">&lt;-</span> <span class="fu"><a href="genDNABin.html">genDNABin</a></span><span class="op">(</span><span class="va">specdf_Anth</span><span class="op">)</span></span></span>

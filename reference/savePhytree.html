@@ -25,7 +25,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/PhyloTree_vignette_1.html">Quick Tree Building</a>
-    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up with rmBadStrings()</a>
+    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -52,29 +52,22 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">savePhytree</span><span class="op">(</span></span>
 <span>  <span class="va">phyloTree</span>,</span>
 <span>  <span class="va">specimen_dataframe</span>,</span>
-<span>  tree_file_name <span class="op">=</span> <span class="st">"Phylogenetic Tree.pdf"</span>,</span>
-<span>  open_PDF <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  label_offset <span class="op">=</span> <span class="fl">5.5e-05</span>,</span>
-<span>  label_size <span class="op">=</span> <span class="fl">0.3</span></span>
+<span>  label_size <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  tree_file_name <span class="op">=</span> <span class="st">"Phylogenetic_Tree.pdf"</span>,</span>
+<span>  openPDF <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  savePDF <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>phyloTree</dt>
-<dd><p>A phylo tree object</p></dd>
+<dd><p>A phylo tree object.</p></dd>
 
 
 <dt>specimen_dataframe</dt>
 <dd><p>A specimen dataframe.</p></dd>
-
-
-<dt>tree_file_name</dt>
-<dd><p>An optional character string to name the PDF file.</p></dd>
-
-
-<dt>open_PDF</dt>
-<dd><p>A logical value to state whether to open the PDF file.</p></dd>
 
 
 <dt>label_offset</dt>
@@ -82,7 +75,19 @@
 
 
 <dt>label_size</dt>
-<dd><p>A numerical value to set the label size</p></dd>
+<dd><p>A numerical value to set the label size.</p></dd>
+
+
+<dt>tree_file_name</dt>
+<dd><p>An optional character string to name the PDF file.</p></dd>
+
+
+<dt>openPDF</dt>
+<dd><p>A logical value to state whether to open the PDF file.</p></dd>
+
+
+<dt>savePDF</dt>
+<dd><p>A logical value to state whether to save the PDF file to the working directory. If FALSE the file will be saved to a temporary directory but will still be able to open.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -142,8 +147,13 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">Phytree_Anth</span> <span class="op">&lt;-</span> <span class="fu"><a href="genPhytree.html">genPhytree</a></span><span class="op">(</span><span class="va">DNAStringSet_Anth_manipulated</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">savePhytree</span><span class="op">(</span><span class="va">Phytree_Anth</span>, <span class="va">specdf_Anth</span>, <span class="st">"Anth_phylo_tree"</span>, <span class="fl">0.000055</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in withr::with_par(mar = c(0, 0, 0, 0)):</span> unused argument (mar = c(0, 0, 0, 0))</span>
+<span class="r-in"><span><span class="fu">savePhytree</span><span class="op">(</span></span></span>
+<span class="r-in"><span> phyloTree <span class="op">=</span> <span class="va">Phytree_Anth</span>,</span></span>
+<span class="r-in"><span> specimen_dataframe <span class="op">=</span> <span class="va">specdf_Anth</span>,</span></span>
+<span class="r-in"><span> tree_file_name <span class="op">=</span> <span class="st">"Anth_phylo_tree.pdf"</span>,</span></span>
+<span class="r-in"><span> openPDF <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span> savePDF <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

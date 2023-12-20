@@ -25,7 +25,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/PhyloTree_vignette_1.html">Quick Tree Building</a>
-    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up with rmBadStrings()</a>
+    <a class="dropdown-item" href="../articles/PhyloTree_vignette_2.html">Automated String Clean Up</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -52,7 +52,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rmBadStrings_2</span><span class="op">(</span></span>
 <span>  <span class="va">DNAStringSet</span>,</span>
 <span>  <span class="va">specimen_dataframe</span>,</span>
-<span>  rmOutliers <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  rmOutliers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  max_Z_score <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -84,7 +84,8 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">specdata</span> <span class="op">&lt;-</span> <span class="fu">PhyInsight</span><span class="fu">::</span><span class="fu"><a href="querySpecData.html">querySpecData</a></span><span class="op">(</span><span class="st">"Panthera leo"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># remove problem strings from a DNA string set</span></span></span>
+<span class="r-in"><span><span class="va">specdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="querySpecData.html">querySpecData</a></span><span class="op">(</span><span class="st">"Panthera leo"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">specdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">specdata</span>, <span class="va">markercode</span> <span class="op">==</span> <span class="st">"COI-5P"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -109,7 +110,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Aligning Sequences:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ================================================================================</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.37 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.36 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Iteration 1 of 2:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -151,25 +152,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.08 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">StringsAndSpecdataframe</span> <span class="op">&lt;-</span> <span class="fu">rmMismatchStrings_2</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">StringsAndSpecdataframe</span> <span class="op">&lt;-</span> <span class="fu">rmBadStrings_2</span><span class="op">(</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> DNAStringSet <span class="op">=</span> <span class="va">DNAStringSet_Leo_manipulated</span>,</span></span>
 <span class="r-in"><span> specimen_dataframe <span class="op">=</span> <span class="va">specdata</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rmMismatchStrings_2(DNAStringSet = DNAStringSet_Leo_manipulated,     specimen_dataframe = specdata):</span> could not find function "rmMismatchStrings_2"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">DNAStringSet_NEW</span> <span class="op">&lt;-</span> <span class="va">StringsAndSpecdataframe</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'StringsAndSpecdataframe' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">DNAStringSet_NEW</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'DNAStringSet_NEW' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DNAStringSet object of length 6:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     width seq                                               names               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1551 -----------------------...----------------------- 37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2]  1551 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TTTT</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #AFFFFF;">G</span>...<span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAAA</span> 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3]  1551 ---------<span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #AFFFFF;">G</span>...<span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAAA</span> 39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4]  1551 <span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">TTTT</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #AFFFFF;">G</span>...<span style="color: #000000; background-color: #FFAFAF;">AA</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #AFFFAF;">CC</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">A</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #FFD7AF;">TT</span><span style="color: #000000; background-color: #AFFFFF;">G</span><span style="color: #000000; background-color: #AFFFAF;">C</span><span style="color: #000000; background-color: #FFD7AF;">T</span><span style="color: #000000; background-color: #FFAFAF;">AAAA</span> 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5]  1551 -----------------------...----------------------- 41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6]  1551 -----------------------...----------------------- 42</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">specimen_dataframe_NEW</span> <span class="op">&lt;-</span> <span class="va">StringsAndSpecdataframe</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'StringsAndSpecdataframe' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">specimen_dataframe_NEW</span><span class="op">$</span><span class="va">processid</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'specimen_dataframe_NEW' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "GBMNC75139-20" "GBMTG2630-16"  "GBMTG5733-16"  "GENG056-12"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "LAB008-23"     "ZOOZS027-23"  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

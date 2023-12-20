@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   PhyloTree_vignette_1: PhyloTree_vignette_1.html
   PhyloTree_vignette_2: PhyloTree_vignette_2.html
-last_built: 2023-12-20T03:58Z
+last_built: 2023-12-20T07:53Z
 urls:
   reference: https://jamesc845.github.io/PhyInsight/reference
   article: https://jamesc845.github.io/PhyInsight/articles

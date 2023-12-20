@@ -10,8 +10,8 @@
 #' @return A list with two elements: the DNA string set with the mismatched sequences removed (1st element) and the specimen dataframe with data for the mismatched sequences removed (2nd element).
 #' @export
 #'
-#' @examples
-#' specdata <- PhyInsight::querySpecData("Panthera leo")
+#' @examples # remove problem strings from a DNA string set
+#'specdata <- querySpecData("Panthera leo")
 #'
 #'specdata <- subset(specdata, markercode == "COI-5P")
 #'
@@ -21,7 +21,7 @@
 #'
 #'DNAStringSet_Leo_manipulated <- ManipStringSet(DNAStringset_Leo)
 #'
-#'StringsAndSpecdataframe <- rmMismatchStrings_2(
+#'StringsAndSpecdataframe <- rmBadStrings_2(
 #'
 #'  DNAStringSet = DNAStringSet_Leo_manipulated,
 #'  specimen_dataframe = specdata
@@ -35,7 +35,7 @@
 #'specimen_dataframe_NEW <- StringsAndSpecdataframe[[2]]
 #'
 #'tail(specimen_dataframe_NEW$processid)
-rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max_Z_score = 3){
+rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = FALSE, max_Z_score = 3){
 
   ### function to generate symbol grid
   genSymbolGrid <- function(DNAStringSet){
@@ -140,7 +140,7 @@ rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
 
 
   ### put the manipulated strings in order (mismatched first)
-  DNAStringSet_order <- DNAStringSet[order(is_mismatched, decreasing = T)]
+  DNAStringSet_order <- DNAStringSet[order(is_mismatched, decreasing = TRUE)]
 
 
   ### while is.stringMismatch() sees TRUE remove the first string from the ordered string sets until it sees FALSE
@@ -185,7 +185,7 @@ rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
 
 
   ###
-  if(is.character(NaNlocs) == T) {
+  if(is.character(NaNlocs) == TRUE) {
 
     #DNAStringSet_rmMismatch <- DNAStringSet_rmMismatch[-as.numeric(NaNlocs)]
     #DNAStringSet <- DNAStringSet_rmMismatch
@@ -237,7 +237,7 @@ rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
 
 
   ###
-  #  #if (is.null(outLocs) == F) {
+  #  #if (is.null(outLocs) == FALSE) {
   #  if (!is.null(outLocs)) {
   #    DNAStringSet <- DNAStringSet[-as.numeric(outLocs)]
   #
@@ -248,7 +248,7 @@ rmBadStrings_2 <- function(DNAStringSet, specimen_dataframe, rmOutliers = F, max
   #
   #  }
 
-  if(rmOutliers == T){
+  if(rmOutliers == TRUE){
 
     while (!is.null(outLocs)) {
 

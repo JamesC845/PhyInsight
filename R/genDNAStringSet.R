@@ -4,35 +4,30 @@
 #'
 #' @import ape
 #'
-#' @param DNABin A DNA bin oibject
-#' @param fileName An optional file name that will be saved to the directory
+#' @param DNABin A DNA bin object.
 #'
 #' @return A DNA string set
 #' @export
 #'
 #' @examples # generate a DNA string set object using the taxon 'Antheraea polyphemus'
-#'
 #' specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 #'
 #' DNABin_Anth <- genDNABin(specdf_Anth)
 #'
 #' DNAStringset_Anth <- genDNAStringSet(DNABin_Anth)
-genDNAStringSet <- function(DNABin, fileName = "new_DNAString_file"){
+genDNAStringSet <- function(DNABin){
 
-  FASTA_fileName <- fileName
+  orig_dir <- getwd()
+  temp_dir <- tempdir()
+  setwd(temp_dir)
+  on.exit(setwd(orig_dir))
 
-  FASTA_fileName.ext <- gsub(" ", "", paste(as.character(FASTA_fileName), ".fasta"))
-  FASTA_fileName.ext <- as.character(FASTA_fileName.ext)
+  FASTA_fileName <- gsub(" ", "", "temp_DNAString_file.fasta")
 
-  ape::write.FASTA(x = ape::del.gaps(DNABin),
-                   file = FASTA_fileName.ext
-  )
+  ape::write.FASTA(x = ape::del.gaps(DNABin), file = FASTA_fileName)
 
-  FASTA_strings <- Biostrings::readDNAStringSet(
-
-    filepath = gsub(" ", "", paste(getwd(), "/", FASTA_fileName.ext)),
-
-    format = "fasta"
+  FASTA_strings <- Biostrings::readDNAStringSet(filepath = FASTA_fileName,
+                                                format = "fasta"
   )
 
   return(FASTA_strings)

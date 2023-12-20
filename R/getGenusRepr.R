@@ -8,8 +8,7 @@
 #' @export
 #'
 #' @examples # query data then extract one observation for each of the genera available
-#'
-#' specdata <- PhyInsight::querySpecData("Alouatta")
+#' specdata <- querySpecData("Alouatta")
 #'
 #' specdata <- getGenusRepr(specdata)
 getGenusRepr <- function(specimen_dataframe){

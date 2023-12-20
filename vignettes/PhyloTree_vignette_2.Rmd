@@ -1,8 +1,8 @@
 ---
-title: "Automated String Clean Up with rmBadStrings()"
+title: "Automated String Clean Up"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PhyloTree_vignette_2}
+  %\VignetteIndexEntry{Automated String Clean Up}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,18 +18,15 @@ knitr::opts_chunk$set(
 library(PhyInsight)
 ```
 
-
 ## Introduction
 
-
-The `rmBadStrings` functions (`rmBadStrings_1()`, `rmBadStrings_2()`, and  `rmBadStrings_3()`) can be used to automatically clean a DNA string set that would otherwise be unsuitable for analysis. These functions automatically remove strings that are mismatched with other strings and those whose distances return `NaN` values or are considered outliers.
+The `rmBadStrings` functions (`rmBadStrings_1()`, `rmBadStrings_2()`, and  `rmBadStrings_3()`) can be used to automatically clean a DNA string set that would otherwise be unsuitable for analysis. These functions use slightly different methods to automatically remove strings that are mismatched with others and those whose distances return `NaN` values or are considered outliers.
 
 &nbsp;
 
 ## Subset Data
 
 ```{r, results = "hide"}
-
 # query the data using the taxon name
 specdata <- querySpecData("Nepenthes")
 
@@ -46,7 +43,6 @@ specdata <- getSpeciesRepr(specdata)
 ## Manipulate DNA Strings
 
 ```{r, results = "hide"}
-
 # generate a DNA bin
 DNABin <- genDNABin(specdata)
 
@@ -62,14 +58,13 @@ DNAStringSet_manip <- ManipStringSet(DNAStringset)
 
 ## String Clean Up
 
-At this point attempting to create a phylo tree will result in an error. Using `DECIPHER::BrowseSeqs(DNAStringSet_manip)` to view the string set will reveal a series of mismatched and fragmented strings. Using `rmBadStrings_3()` will automatically remove all mismatched strings. After which, a tree can be created and and plotted.
+At this point attempting to create a phylo tree will result in an error. Using `DECIPHER::BrowseSeqs(DNAStringSet_manip)` to view the string set will reveal a series of mismatched and fragmented strings. Using `rmBadStrings_1()` will automatically remove all mismatched strings. After which, a tree can be created and and plotted.
 
 ```{r}
-
 # use the function to remove unsuitable strings and store into an object
-BadStringsRemoved <- rmBadStrings_3(
+BadStringsRemoved <- rmBadStrings_1(
   DNAStringSet = DNAStringSet_manip,
-  specimen_dataframe = specdata,
+  specimen_dataframe = specdata
 )
 
 ```
@@ -85,7 +80,6 @@ specdata_new <- BadStringsRemoved[[2]]
 ## Create Phylogenetic Tree
 
 ```{r, fig.show='hold', fig.width=16, fig.height=14}
-
 # automatically generate a phylo tree
 PhyloTree <- genPhytree(DNAStringSet_new)
 
@@ -101,13 +95,9 @@ plot(
 
 ```
   
-
-
 &nbsp;
 &nbsp;
 &nbsp;
-
-
 
 # Remove Outliers
 
@@ -117,13 +107,12 @@ as performing its regular processes. `max_Z_score` is a numerical value that all
 ## Remove Outliers (Below 3 Z-Score)
 
 ```{r}
-
 # use the function to remove unsuitable strings and remove outliers
-BadStringsRemoved <- rmBadStrings_3(
+BadStringsRemoved <- rmBadStrings_1(
   DNAStringSet = DNAStringSet_manip,
   specimen_dataframe = specdata,
   
-  rmOutliers = T
+  rmOutliers = TRUE
 )
 
 ```
@@ -139,7 +128,6 @@ specdata_new <- BadStringsRemoved[[2]]
 ## Create Phylogenetic Tree
 
 ```{r, fig.show='hold', fig.width=16, fig.height=14}
-
 # automatically generate a phylo tree
 PhyloTree <- genPhytree(DNAStringSet_new)
 
@@ -155,40 +143,15 @@ plot(
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Remove Outliers (Below 2 Z-Score)
 
 ```{r}
-
 # use the function to remove unsuitable strings and remove outliers
-BadStringsRemoved <- rmBadStrings_3(
+BadStringsRemoved <- rmBadStrings_1(
   DNAStringSet = DNAStringSet_manip,
   specimen_dataframe = specdata,
   
-  rmOutliers = T,
+  rmOutliers = TRUE,
   
   max_Z_score = 2
 )
@@ -206,7 +169,6 @@ specdata_new <- BadStringsRemoved[[2]]
 ## Create Phylogenetic Tree
 
 ```{r, fig.show='hold', fig.width=16, fig.height=14}
-
 # automatically generate a phylo tree
 PhyloTree <- genPhytree(DNAStringSet_new)
 
@@ -221,10 +183,4 @@ plot(
 )
 
 ```
-
-
-
-
-
-
 

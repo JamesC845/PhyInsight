@@ -7,24 +7,27 @@
 savePhytree(
   phyloTree,
   specimen_dataframe,
-  tree_file_name = "Phylogenetic Tree.pdf",
-  open_PDF = T,
   label_offset = 5.5e-05,
-  label_size = 0.3
+  label_size = 0.3,
+  tree_file_name = "Phylogenetic_Tree.pdf",
+  openPDF = FALSE,
+  savePDF = FALSE
 )
 }
 \arguments{
-\item{phyloTree}{A phylo tree object}
+\item{phyloTree}{A phylo tree object.}
 
 \item{specimen_dataframe}{A specimen dataframe.}
 
-\item{tree_file_name}{An optional character string to name the PDF file.}
-
-\item{open_PDF}{A logical value to state whether to open the PDF file.}
-
 \item{label_offset}{A numerical value to set the label offset distance.}
 
-\item{label_size}{A numerical value to set the label size}
+\item{label_size}{A numerical value to set the label size.}
+
+\item{tree_file_name}{An optional character string to name the PDF file.}
+
+\item{openPDF}{A logical value to state whether to open the PDF file.}
+
+\item{savePDF}{A logical value to state whether to save the PDF file to the working directory. If FALSE the file will be saved to a temporary directory but will still be able to open.}
 }
 \value{
 A PDF file.
@@ -44,5 +47,11 @@ DNAStringSet_Anth_manipulated <- ManipStringSet(DNAStringset_Anth)
 
 Phytree_Anth <- genPhytree(DNAStringSet_Anth_manipulated)
 
-savePhytree(Phytree_Anth, specdf_Anth, "Anth_phylo_tree", 0.000055)
+savePhytree(
+ phyloTree = Phytree_Anth,
+ specimen_dataframe = specdf_Anth,
+ tree_file_name = "Anth_phylo_tree.pdf",
+ openPDF = FALSE,
+ savePDF = FALSE
+)
 }

@@ -2,14 +2,10 @@
 title: "Quick Tree Building"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PhyloTree_vignette_1}
+  %\VignetteIndexEntry{Quick Tree Building}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r set-options, echo=FALSE, cache=FALSE}
-options(width = 1000)
-```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -17,8 +13,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-##
 
 ```{r setup}
 library(PhyInsight)
@@ -35,9 +29,6 @@ Any taxon can be used provided the DNA strings are in the correct format. The Ur
 &nbsp;
 
 ## Subset Data
-
-
-
 
 ```{r}
 
@@ -81,20 +72,6 @@ DNAStringset <- genDNAStringSet(DNABin)
 DNAStringSet <- ManipStringSet(DNAStringset)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 &nbsp;
 

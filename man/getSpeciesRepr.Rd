@@ -17,7 +17,6 @@ Get one observation/row per species from a specimen dataframe.
 }
 \examples{
 # query data then extract one observation for each of the species available
-
 specdata <- PhyInsight::querySpecData("Alouatta")
 
 specdata <- getSpeciesRepr(specdata)

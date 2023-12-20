@@ -17,6 +17,5 @@ Get specimen and DNA sequence data from the Bold Systems database returned as a 
 }
 \examples{
 # generate a specimen data frame using the taxon 'Antheraea polyphemus'
-
 specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 }

@@ -8,7 +8,6 @@
 #' @export
 #'
 #' @examples # generate and manipulate a DNA string set object using the taxon 'Antheraea polyphemus'
-#'
 #' specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 #'
 #' DNABin_Anth <- genDNABin(specdf_Anth)

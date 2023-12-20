@@ -17,8 +17,7 @@ Get one observation/row per genus from a specimen dataframe.
 }
 \examples{
 # query data then extract one observation for each of the genera available
-
-specdata <- PhyInsight::querySpecData("Alouatta")
+specdata <- querySpecData("Alouatta")
 
 specdata <- getGenusRepr(specdata)
 }

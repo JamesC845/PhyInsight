@@ -5,5 +5,5 @@
 ^pkgdown$
 ^\.github$
 ^doc$
-^Meta$
 ^README.Rmd
+^Meta$

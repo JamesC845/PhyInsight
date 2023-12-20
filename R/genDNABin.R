@@ -11,7 +11,6 @@
 #' @export
 #'
 #' @examples # generate a DNA bin object using the taxon 'Antheraea polyphemus'
-#'
 #' specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 #'
 #' DNABin_Anth <- genDNABin(specdf_Anth)

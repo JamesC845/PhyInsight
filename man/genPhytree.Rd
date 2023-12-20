@@ -4,10 +4,12 @@
 \alias{genPhytree}
 \title{Create a Phylogenetic Tree Object}
 \usage{
-genPhytree(manipulated_stringset)
+genPhytree(manipulated_stringset, incompleteDist = TRUE)
 }
 \arguments{
 \item{manipulated_stringset}{A manipulated string set object.}
+
+\item{incompleteDist}{A logical value to state whether to create a tree from incomplete distances.}
 }
 \value{
 A phylogenetic tree object
@@ -17,7 +19,6 @@ Create a phylo tree object using a manipulated DNA string set object.
 }
 \examples{
 # create and plot a phylo tree
-
 specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 
 DNABin_Anth <- genDNABin(specdf_Anth)

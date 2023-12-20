@@ -7,7 +7,7 @@
 rmBadStrings_1(
   DNAStringSet,
   specimen_dataframe,
-  rmOutliers = F,
+  rmOutliers = FALSE,
   max_Z_score = 3
 )
 }
@@ -27,7 +27,8 @@ A list with two elements: the DNA string set with the mismatched sequences remov
 Identify and remove bad DNA sequences within a string set. Prioritise removal by the smallest base width first.
 }
 \examples{
-specdata <- PhyInsight::querySpecData("Panthera leo")
+# remove problem strings from a DNA string set
+specdata <- querySpecData("Panthera leo")
 
 specdata <- subset(specdata, markercode == "COI-5P")
 
@@ -37,7 +38,7 @@ DNAStringset_Leo <- genDNAStringSet(DNABin_Leo)
 
 DNAStringSet_Leo_manipulated <- ManipStringSet(DNAStringset_Leo)
 
-StringsAndSpecdataframe <- PhyInsight::rmBadStrings_1(
+StringsAndSpecdataframe <- rmBadStrings_1(
 
  DNAStringSet = DNAStringSet_Leo_manipulated,
  specimen_dataframe = specdata

@@ -8,7 +8,6 @@
 #' @export
 #'
 #' @examples # query data then extract one observation for each of the species available
-#'
 #' specdata <- PhyInsight::querySpecData("Alouatta")
 #'
 #' specdata <- getSpeciesRepr(specdata)
@@ -27,6 +26,5 @@ getSpeciesRepr <- function(specimen_dataframe){
   species_sample <- do.call(rbind, species_sample)
 
   return(species_sample)
-
 
 }

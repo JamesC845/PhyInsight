@@ -4,12 +4,10 @@
 \alias{genDNAStringSet}
 \title{Generate a DNA String Set}
 \usage{
-genDNAStringSet(DNABin, fileName = "new_DNAString_file")
+genDNAStringSet(DNABin)
 }
 \arguments{
-\item{DNABin}{A DNA bin oibject}
-
-\item{fileName}{An optional file name that will be saved to the directory}
+\item{DNABin}{A DNA bin object.}
 }
 \value{
 A DNA string set
@@ -19,7 +17,6 @@ Create a DNA string set object using a DNA bin object to write and read a FASTA 
 }
 \examples{
 # generate a DNA string set object using the taxon 'Antheraea polyphemus'
-
 specdf_Anth <- querySpecData("Antheraea polyphemus")[1:10,]
 
 DNABin_Anth <- genDNABin(specdf_Anth)

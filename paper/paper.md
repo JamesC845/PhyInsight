@@ -10,7 +10,7 @@ authors:
   - name: James Churchward
     orcid: 0009-0005-5390-5043
     equal-contrib: true
-date: 20 December 2023
+date: 12 January 2024
 bibliography: paper.bib
 ---
 
@@ -22,7 +22,7 @@ bibliography: paper.bib
 
 &nbsp;
 
-# Introduction
+# Statement of need
 
 While existing bioinformatic tools in phylogeny are powerful, they require much work to prepare the data for analysis and phylogenetic tree creation. This hinders reproducibility and uses up valuable research time. By reducing complex processes into a few easy-to-use functions, this package provides automated solutions for DNA string manipulation and phylogenetic tree creation within the R environment [@R]. In doing so, this package reduces the risk of errors, promotes reliability, and saves the user time. Furthermore, this package allows the user to perform complicated analyses without the need for extensive phylogenetic or programming knowledge making it perfect for beginners as well as experts.
 

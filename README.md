@@ -30,8 +30,15 @@ PhyInsight has functions that:
 
 ## Installation
 
-You can install PhyInsight 0.1.0 from GitHub by using the following
+You can install PhyInsight 0.1.0 from CRAN by using the following
 command:
+
+``` r
+install.packages("PhyInsight")
+```
+
+Alternatively, you can install the package from GitHub by using the
+following command:
 
 ``` r
 remotes::install_github("JamesC845/PhyInsight")
